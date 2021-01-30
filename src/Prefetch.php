@@ -8,7 +8,7 @@ use craft\base\Plugin;
 use craft\web\twig\variables\CraftVariable;
 use yii\base\Event;
 
-class Example extends Plugin
+class Prefetch extends Plugin
 {
     /**
      * @var Example

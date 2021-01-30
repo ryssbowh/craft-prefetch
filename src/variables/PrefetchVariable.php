@@ -2,40 +2,37 @@
 
 namespace Ryssbowh\CraftPrefetch\variables;
 
+use Ryssbowh\CraftPrefetch\Prefetch;
+
 class PrefetchVariable
 {
     public function dnsPrefetch(string $url)
     {
-    	$this->register($url, 'dns-prefetch');
+    	Prefetch::$plugin->prefetch->dnsPrefetch($url);
     }
 
     public function preconnect(string $url)
     {
-    	$this->register($url, 'preconnect');
+    	Prefetch::$plugin->prefetch->preconnect($url);
     }
 
     public function prefetch(string $url)
     {
-    	$this->register($url, 'prefetch');
+    	Prefetch::$plugin->prefetch->prefetch($url);
     }
 
     public function subresource(string $url)
     {
-		$this->register($url, 'subresource');
+		Prefetch::$plugin->prefetch->subresource($url);
     }
 
     public function prerender(string $url)
     {
-    	$this->register($url, 'prerender');
+    	Prefetch::$plugin->prefetch->prerender($url);
     }
 
     public function preload(string $url)
     {
-    	$this->register($url, 'preload');
-    }
-
-    protected function register(string $url, string $type)
-    {
-    	\Craft::$app->view->registerHtml('<link rel="'.$type.'" href="'.$url.'">', View::POS_HEAD);
+    	Prefetch::$plugin->prefetch->preload($url);
     }
 }

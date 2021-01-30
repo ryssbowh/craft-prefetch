@@ -2,7 +2,6 @@
     "name": "ryssbowh/craft-prefetch",
     "description": "Prefetch, Preconnect and DNS Prefetch",
     "type": "craft-plugin",
-    "version": "1.0",
     "keywords": [
         "craft",
         "cms",
@@ -28,6 +27,9 @@
         "handle": "prefetch",
         "developer": "The Web Puzzlers",
         "developerUrl": "https://github.com/ryssbowh",
+        "components": {
+            "prefetch": "Ryssbowh\\CraftPrefetch\\services\\PrefetchService"
+        },
         "class": "Ryssbowh\\CraftPrefetch\\Prefetch"
     }
 }

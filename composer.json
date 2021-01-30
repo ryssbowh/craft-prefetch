@@ -1,0 +1,33 @@
+{
+    "name": "ryssbowh/craft-prefetch",
+    "description": "Prefetch, Preconnect and DNS Prefetch",
+    "type": "craft-plugin",
+    "version": "1.0",
+    "keywords": [
+        "craft",
+        "cms",
+        "craftcms",
+        "craft-plugin"
+    ],
+    "authors": [
+        {
+            "name": "The Web Puzzlers",
+            "homepage": "https://github.com/ryssbowh"
+        }
+    ],
+    "require": {
+        "craftcms/cms": "^3.5.0"
+    },
+    "autoload": {
+        "psr-4": {
+          "Ryssbowh\\CraftPrefetch\\": "src/"
+        }
+    },
+    "extra": {
+        "name": "Prefetch",
+        "handle": "prefetch",
+        "developer": "The Web Puzzlers",
+        "developerUrl": "https://github.com/ryssbowh",
+        "class": "Ryssbowh\\CraftPrefetch\\Prefetch"
+    }
+}

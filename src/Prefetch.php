@@ -33,7 +33,7 @@ class Prefetch extends Plugin
                 }
             );
 
-            $craft->view->hook('prefetch', [$this::$plugin->prefetch, 'onPrefetchHook']);
+            \Craft::$app->view->hook('prefetch', [$this::$plugin->prefetch, 'onPrefetchHook']);
         }
     }
 }

@@ -3,6 +3,7 @@
 namespace Ryssbowh\CraftPrefetch\services;
 
 use craft\base\Component;
+use craft\web\View;
 
 class PrefetchService extends Component
 {

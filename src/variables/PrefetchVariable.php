@@ -6,33 +6,33 @@ use Ryssbowh\CraftPrefetch\Prefetch;
 
 class PrefetchVariable
 {
-    public function dnsPrefetch(string $url)
+    public function dnsPrefetch(string $url, bool $now = false)
     {
-    	Prefetch::$plugin->prefetch->dnsPrefetch($url);
+    	Prefetch::$plugin->prefetch->dnsPrefetch($url, $now);
     }
 
-    public function preconnect(string $url)
+    public function preconnect(string $url, bool $now = false)
     {
-    	Prefetch::$plugin->prefetch->preconnect($url);
+    	Prefetch::$plugin->prefetch->preconnect($url, $now);
     }
 
-    public function prefetch(string $url)
+    public function prefetch(string $url, bool $now = false)
     {
-    	Prefetch::$plugin->prefetch->prefetch($url);
+    	Prefetch::$plugin->prefetch->prefetch($url, $now);
     }
 
-    public function subresource(string $url)
+    public function subresource(string $url, bool $now = false)
     {
-		Prefetch::$plugin->prefetch->subresource($url);
+		Prefetch::$plugin->prefetch->subresource($url, $now);
     }
 
-    public function prerender(string $url)
+    public function prerender(string $url, bool $now = false)
     {
-    	Prefetch::$plugin->prefetch->prerender($url);
+    	Prefetch::$plugin->prefetch->prerender($url, $now);
     }
 
-    public function preload(string $url)
+    public function preload(string $url, bool $now = false)
     {
-    	Prefetch::$plugin->prefetch->preload($url);
+    	Prefetch::$plugin->prefetch->preload($url, $now);
     }
 }

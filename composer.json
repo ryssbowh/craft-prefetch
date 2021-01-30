@@ -10,7 +10,8 @@
         "preload",
         "prefetch",
         "preconnect",
-        "subresource"
+        "subresource",
+        "asynchronous"
     ],
     "authors": [
         {

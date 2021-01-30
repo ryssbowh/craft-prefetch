@@ -1,6 +1,9 @@
 # Prefetch for Craft CMS 3.x
 
-Prefetch, preload, preconnect, dns prefetch, subresource, prerender in your Twig templates :
+This plugin allows you to prefetch, preload, preconnect, dns prefetch, subresource, prerender any url in your Twig templates.
+Also allows you to load an external font asynchronously.
+
+## Register
 
 ```
 {% do craft.prefetch.dnsPrefetch('//example.com') %}
@@ -9,25 +12,28 @@ Prefetch, preload, preconnect, dns prefetch, subresource, prerender in your Twig
 {% do craft.prefetch.subresource('styles.css') %}
 {% do craft.prefetch.prerender('//anothersite.com') %}
 {% do craft.prefetch.preload('image.png') %}
+{% do craft.prefetch.asynchronousFont('https://fonts.googleapis.com/css2?family=Potta+One&display=swap') %}
 ```
 
-Or with php :
+All this methods also available in php on the Prefetch service :
 
 ```
 use Ryssbowh\CraftPrefetch\Prefetch;
 
 Prefetch::$plugin->prefetch->dnsPrefetch('//example.com'); 
-Prefetch::$plugin->prefetch->preconnect('//google.com');  
-Prefetch::$plugin->prefetch->prefetch('image.png');  
-Prefetch::$plugin->prefetch->subresource('styles.css');  
-Prefetch::$plugin->prefetch->prerender('//anothersite.com');  
-Prefetch::$plugin->prefetch->preload('image.png');
 ```
 
-And make sure you call the hook where you want the html echoed out : `{% hook 'prefetch' %}`
+All this methods accept a second parameter to define html arguments :
 
-Without hook :
+```
+{% do craft.prefetch.preload('image.png', ['crossorigin']) %}
+```
 
-You can call those 6 methods with a second argument set to true, the prefetch will be registered on the view and you don't have to call the hook. But it will be echoed out in order of registration so you don't have a say where it happens.
+By default, the preconnect method will add the crossorigin argument if the domain called is different than the origin domain.
+
+## Print html
+
+Call the hook where you want the html echoed out : `{% hook 'prefetch' %}`
+
 
 Icons made by https://www.flaticon.com/authors/smashicons

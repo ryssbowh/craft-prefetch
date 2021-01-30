@@ -7,38 +7,53 @@ use craft\web\View;
 
 class PrefetchService extends Component
 {
-    public function dnsPrefetch(string $url)
+    protected $registered = [];
+
+    public function dnsPrefetch(string $url, bool $now = false)
     {
-    	$this->register($url, 'dns-prefetch');
+    	$this->register($url, 'dns-prefetch', $now);
     }
 
-    public function preconnect(string $url)
+    public function preconnect(string $url, bool $now = false)
     {
-    	$this->register($url, 'preconnect');
+    	$this->register($url, 'preconnect', $now);
     }
 
-    public function prefetch(string $url)
+    public function prefetch(string $url, bool $now = false)
     {
-    	$this->register($url, 'prefetch');
+    	$this->register($url, 'prefetch', $now);
     }
 
-    public function subresource(string $url)
+    public function subresource(string $url, bool $now = false)
     {
-		$this->register($url, 'subresource');
+		$this->register($url, 'subresource', $now);
     }
 
-    public function prerender(string $url)
+    public function prerender(string $url, bool $now = false)
     {
-    	$this->register($url, 'prerender');
+    	$this->register($url, 'prerender', $now);
     }
 
-    public function preload(string $url)
+    public function preload(string $url, bool $now = false)
     {
-    	$this->register($url, 'preload');
+    	$this->register($url, 'preload', $now);
     }
 
-    protected function register(string $url, string $type)
+    public function onPrefetchHook()
     {
-    	\Craft::$app->view->registerHtml('<link rel="'.$type.'" href="'.$url.'">', View::POS_HEAD);
+        foreach ($this->registered as $type => $urls) {
+            foreach ($urls as $url) {
+                echo '<link rel="'.$type.'" href="'.$url.'">\n';
+            }
+        }
+    }
+
+    protected function register(string $url, string $type, bool $now)
+    {
+        if ($now) {
+    	   \Craft::$app->view->registerHtml('<link rel="'.$type.'" href="'.$url.'">', View::POS_HEAD);
+        } else {
+            $this->registered[$type][] = $url;
+        }
     }
 }

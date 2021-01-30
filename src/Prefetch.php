@@ -23,14 +23,17 @@ class Prefetch extends Plugin
         parent::init();
         self::$plugin = $this;
 
-        // Register our variables
-        Event::on(
-            CraftVariable::class,
-            CraftVariable::EVENT_INIT,
-            function (Event $event) {
-                $variable = $event->sender;
-                $variable->set('prefetch', PrefetchVariable::class);
-            }
-        );
+        if (\Craft::$app->request->isSiteRequest) {
+            Event::on(
+                CraftVariable::class,
+                CraftVariable::EVENT_INIT,
+                function (Event $event) {
+                    $variable = $event->sender;
+                    $variable->set('prefetch', PrefetchVariable::class);
+                }
+            );
+
+            $craft->view->hook('prefetch', [$this::$plugin->prefetch, 'onPrefetchHook']);
+        }
     }
 }

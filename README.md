@@ -23,3 +23,9 @@ Prefetch::$plugin->prefetch->dnsPrefetch('styles.css');
 Prefetch::$plugin->prefetch->dnsPrefetch('//anothersite.com');  
 Prefetch::$plugin->prefetch->dnsPrefetch('image.png');
 ```
+
+And make sure you call the hook where you want the html echoed out : `{% hook 'prefetch' %}`
+
+Without hook :
+
+You can call those 6 methods with a second argument set to true, the prefetch will be registered on the view and you don't have to call the hook. But it will be echoed out in order of registration so you don't have a say where it happens.

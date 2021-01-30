@@ -17,11 +17,11 @@ Or with php :
 use Ryssbowh\CraftPrefetch\Prefetch;
 
 Prefetch::$plugin->prefetch->dnsPrefetch('//example.com'); 
-Prefetch::$plugin->prefetch->dnsPrefetch('//google.com');  
-Prefetch::$plugin->prefetch->dnsPrefetch('image.png');  
-Prefetch::$plugin->prefetch->dnsPrefetch('styles.css');  
-Prefetch::$plugin->prefetch->dnsPrefetch('//anothersite.com');  
-Prefetch::$plugin->prefetch->dnsPrefetch('image.png');
+Prefetch::$plugin->prefetch->preconnect('//google.com');  
+Prefetch::$plugin->prefetch->prefetch('image.png');  
+Prefetch::$plugin->prefetch->subresource('styles.css');  
+Prefetch::$plugin->prefetch->prerender('//anothersite.com');  
+Prefetch::$plugin->prefetch->preload('image.png');
 ```
 
 And make sure you call the hook where you want the html echoed out : `{% hook 'prefetch' %}`

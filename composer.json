@@ -1,12 +1,16 @@
 {
     "name": "ryssbowh/craft-prefetch",
-    "description": "Prefetch, Preconnect and DNS Prefetch",
+    "description": "Prefetch, Preconnect, DNS Prefetch, Preload, Prerender and Subresource helper",
     "type": "craft-plugin",
     "keywords": [
         "craft",
         "cms",
         "craftcms",
-        "craft-plugin"
+        "craft-plugin",
+        "preload",
+        "prefetch",
+        "preconnect",
+        "subresource"
     ],
     "authors": [
         {

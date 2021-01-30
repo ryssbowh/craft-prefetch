@@ -43,15 +43,20 @@ class PrefetchService extends Component
     {
         foreach ($this->registered as $type => $urls) {
             foreach ($urls as $url) {
-                echo '<link rel="'.$type.'" href="'.$url.'">\n';
+                echo $this->html($type, $url)."\n";
             }
         }
+    }
+
+    protected function html(string $type, string $url): string
+    {
+        return '<link rel="'.$type.'" href="'.$url.'">';
     }
 
     protected function register(string $url, string $type, bool $now)
     {
         if ($now) {
-    	   \Craft::$app->view->registerHtml('<link rel="'.$type.'" href="'.$url.'">', View::POS_HEAD);
+    	   \Craft::$app->view->registerHtml($this->html($type, $url), View::POS_HEAD);
         } else {
             $this->registered[$type][] = $url;
         }

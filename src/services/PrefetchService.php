@@ -17,10 +17,12 @@ class PrefetchService extends Component
      * 
      * @param  string $url
      * @param  array  $args
+     * @return PrefetchService
      */
-    public function dnsPrefetch(string $url, array $args = [])
+    public function dnsPrefetch(string $url, array $args = []): PrefetchService
     {
     	$this->register($url, 'dns-prefetch', $args);
+        return $this;
     }
 
     /**
@@ -28,14 +30,16 @@ class PrefetchService extends Component
      * 
      * @param  string $url
      * @param  array  $args
+     * @return PrefetchService
      */
-    public function preconnect(string $url, array $args = [])
+    public function preconnect(string $url, array $args = []): PrefetchService
     {
         $url_info = parse_url($url);
         if (\Craft::$app->request->hostName != $url_info['host']) {
             $args[] = 'crossorigin';
         }
     	$this->register($url, 'preconnect', $args);
+        return $this;
     }
 
     /**
@@ -43,10 +47,12 @@ class PrefetchService extends Component
      * 
      * @param  string $url
      * @param  array  $args
+     * @return PrefetchService
      */
-    public function prefetch(string $url, array $args = [])
+    public function prefetch(string $url, array $args = []): PrefetchService
     {
     	$this->register($url, 'prefetch', $args);
+        return $this;
     }
 
     /**
@@ -54,10 +60,12 @@ class PrefetchService extends Component
      * 
      * @param  string $url
      * @param  array  $args
+     * @return PrefetchService
      */
-    public function subresource(string $url, array $args = [])
+    public function subresource(string $url, array $args = []): PrefetchService
     {
 		$this->register($url, 'subresource', $args);
+        return $this;
     }
 
     /**
@@ -65,10 +73,12 @@ class PrefetchService extends Component
      * 
      * @param  string $url
      * @param  array  $args
+     * @return PrefetchService
      */
-    public function prerender(string $url, array $args = [])
+    public function prerender(string $url, array $args = []): PrefetchService
     {
     	$this->register($url, 'prerender', $args);
+        return $this;
     }
 
     /**
@@ -76,10 +86,12 @@ class PrefetchService extends Component
      * 
      * @param  string $url
      * @param  array  $args
+     * @return PrefetchService
      */
-    public function preload(string $url, array $args = [])
+    public function preload(string $url, array $args = []): PrefetchService
     {
     	$this->register($url, 'preload', $args);
+        return $this;
     }
 
     /**
@@ -89,8 +101,9 @@ class PrefetchService extends Component
      * @param  array        $args
      * @param  bool         $nojs     Add the nojs html
      * @param  bool         $preload  Preload the font
+     * @return PrefetchService
      */
-    public function asynchronousFont(string $url, array $args = [], bool $nojs = true, bool $preload = true)
+    public function asynchronousFont(string $url, array $args = [], bool $nojs = true, bool $preload = true): PrefetchService
     {
         $url_info = parse_url($url);
         $this->preconnect($url_info['scheme'].'://'.$url_info['host'], $args);
@@ -104,6 +117,7 @@ class PrefetchService extends Component
         if ($nojs) {
             $this->registered[] = '<noscript>'.$this->buildHtml($url, 'stylesheet', []).'</noscript>';
         }
+        return $this;
     }
 
     /**
@@ -122,10 +136,12 @@ class PrefetchService extends Component
      * @param  string $url
      * @param  string $type
      * @param  array  $args
+     * @return PrefetchService
      */
-    public function register(string $url, string $type, array $args)
+    public function register(string $url, string $type, array $args): PrefetchService
     {
         $this->registered[] = $this->buildHtml($url, $type, $args);
+        return $this;
     }
 
     /**

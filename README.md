@@ -15,6 +15,13 @@ Also allows you to load an external font asynchronously.
 {% do craft.prefetch.asynchronousFont('https://fonts.googleapis.com/css2?family=Potta+One&display=swap') %}
 ```
 
+All these methods can be chained, like :
+
+```
+{% do craft.prefetch.dnsPrefetch('//example.com')
+	.preconnect('//google.com') %}
+```
+
 For very specific cases you can use the `register` method :
 
 `{% do craft.prefetch.register('https://anothersite.com/myFonts.css', 'stylesheet', ['media' => 'print', 'crossorigin']) %}`

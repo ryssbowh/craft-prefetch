@@ -1,5 +1,9 @@
 # ryssbowh/craft-prefetch Changelog
 
+## 1.0.3 - 2020-01-31
+### Changed
+- method chaining
+
 ## 1.0.2 - 2020-01-31
 ### Changed
 - public method `register`

@@ -7,13 +7,28 @@ use craft\web\View;
 
 class PrefetchService extends Component
 {
+    /**
+     * @var array
+     */
     protected $registered = [];
 
+    /**
+     * Registers a dns prefetch
+     * 
+     * @param  string $url
+     * @param  array  $args
+     */
     public function dnsPrefetch(string $url, array $args = [])
     {
     	$this->register($url, 'dns-prefetch', $args);
     }
 
+    /**
+     * Registers a preconnect
+     * 
+     * @param  string $url
+     * @param  array  $args
+     */
     public function preconnect(string $url, array $args = [])
     {
         $url_info = parse_url($url);
@@ -23,26 +38,58 @@ class PrefetchService extends Component
     	$this->register($url, 'preconnect', $args);
     }
 
+    /**
+     * Registers a prefetch
+     * 
+     * @param  string $url
+     * @param  array  $args
+     */
     public function prefetch(string $url, array $args = [])
     {
     	$this->register($url, 'prefetch', $args);
     }
 
+    /**
+     * Registers a subresource
+     * 
+     * @param  string $url
+     * @param  array  $args
+     */
     public function subresource(string $url, array $args = [])
     {
 		$this->register($url, 'subresource', $args);
     }
 
+    /**
+     * Registers a prerender
+     * 
+     * @param  string $url
+     * @param  array  $args
+     */
     public function prerender(string $url, array $args = [])
     {
     	$this->register($url, 'prerender', $args);
     }
 
+    /**
+     * Registers a preload
+     * 
+     * @param  string $url
+     * @param  array  $args
+     */
     public function preload(string $url, array $args = [])
     {
     	$this->register($url, 'preload', $args);
     }
 
+    /**
+     * Registers asynchronous font
+     * 
+     * @param  string       $url
+     * @param  array        $args
+     * @param  bool         $nojs     Add the nojs html
+     * @param  bool         $preload  Preload the font
+     */
     public function asynchronousFont(string $url, array $args = [], bool $nojs = true, bool $preload = true)
     {
         $url_info = parse_url($url);
@@ -59,6 +106,9 @@ class PrefetchService extends Component
         }
     }
 
+    /**
+     * Hook callback, prints out the html
+     */
     public function onPrefetchHook()
     {
         foreach ($this->registered as $html) {
@@ -66,11 +116,26 @@ class PrefetchService extends Component
         }
     }
 
-    protected function register(string $url, string $type, array $args)
+    /**
+     * Registers a link tag
+     * 
+     * @param  string $url
+     * @param  string $type
+     * @param  array  $args
+     */
+    public function register(string $url, string $type, array $args)
     {
         $this->registered[] = $this->buildHtml($url, $type, $args);
     }
 
+    /**
+     * Builds a link tag html
+     * 
+     * @param  string $url
+     * @param  string $type
+     * @param  array  $args
+     * @return string
+     */
     protected function buildHtml(string $url, string $type, array $args): string
     {
         $args['href'] = $url;

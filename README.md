@@ -15,7 +15,15 @@ Also allows you to load an external font asynchronously.
 {% do craft.prefetch.asynchronousFont('https://fonts.googleapis.com/css2?family=Potta+One&display=swap') %}
 ```
 
-All this methods also available in php on the Prefetch service :
+For very specific cases you can use the `register` method :
+
+`{% do craft.prefetch.register('https://anothersite.com/myFonts.css', 'stylesheet', ['media' => 'print', 'crossorigin']) %}`
+
+This will output :
+
+`<link rel="stylesheet" href="https://anothersite.com/myFonts.css" media="print" crossorigin>`
+
+All these methods also available in php on the Prefetch service :
 
 ```
 use Ryssbowh\CraftPrefetch\Prefetch;
@@ -23,7 +31,7 @@ use Ryssbowh\CraftPrefetch\Prefetch;
 Prefetch::$plugin->prefetch->dnsPrefetch('//example.com'); 
 ```
 
-All this methods accept a second parameter to define html arguments :
+All these methods (but `register`) accept a second parameter to define html arguments :
 
 ```
 {% do craft.prefetch.preload('image.png', ['crossorigin']) %}

@@ -1,9 +1,15 @@
 # ryssbowh/craft-prefetch Changelog
 
-## 0.1.1 - 2021-01-30
+## 1.0.2 - 2020-01-31
+### Changed
+- public method `register`
+- README
+- comments
+
+## 1.0.1 - 2021-01-30
 ### Added
 - Changelog
 
-## 0.1.0 - 2021-01-30
+## 1.0.0 - 2021-01-30
 ### Added
 - Initial release

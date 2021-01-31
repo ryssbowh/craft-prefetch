@@ -11,7 +11,7 @@ use yii\base\Event;
 class Prefetch extends Plugin
 {
     /**
-     * @var Example
+     * @var Prefetch
      */
     public static $plugin;
 

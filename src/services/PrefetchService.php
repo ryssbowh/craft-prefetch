@@ -140,7 +140,10 @@ class PrefetchService extends Component
      */
     public function register(string $url, string $type, array $args): PrefetchService
     {
-        $this->registered[] = $this->buildHtml($url, $type, $args);
+        $html = $this->buildHtml($url, $type, $args);
+        if (!in_array($html, $this->registered)) {
+            $this->registered[] = $html;
+        }
         return $this;
     }
 
@@ -167,6 +170,6 @@ class PrefetchService extends Component
             }
             $html .= ' ';
         }
-        return "<link $html>\n";
+        return "<link $html/>\n";
     }
 }

@@ -1,5 +1,9 @@
 # ryssbowh/craft-prefetch Changelog
 
+## 1.0.4 - 2020-02-05
+### Fixed
+- duplicated registrations
+
 ## 1.0.3 - 2020-01-31
 ### Changed
 - method chaining

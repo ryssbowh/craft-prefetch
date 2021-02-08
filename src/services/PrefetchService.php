@@ -4,13 +4,15 @@ namespace Ryssbowh\CraftPrefetch\services;
 
 use craft\base\Component;
 use craft\web\View;
+use yii\helpers\BaseHtml;
 
 class PrefetchService extends Component
 {
     /**
+     * No script tags to be printed after the body tag
      * @var array
      */
-    protected $registered = [];
+    protected $noscripts = [];
 
     /**
      * Registers a dns prefetch
@@ -36,7 +38,7 @@ class PrefetchService extends Component
     {
         $url_info = parse_url($url);
         if (\Craft::$app->request->hostName != $url_info['host']) {
-            $args[] = 'crossorigin';
+            $args['crossorigin'] = true;
         }
     	$this->register($url, 'preconnect', $args);
         return $this;
@@ -102,32 +104,26 @@ class PrefetchService extends Component
      * @param  bool         $nojs     Add the nojs html
      * @param  bool         $preload  Preload the font
      * @return PrefetchService
+     * @see https://pagespeedchecklist.com/asynchronous-google-fonts
      */
     public function asynchronousFont(string $url, array $args = [], bool $nojs = true, bool $preload = true): PrefetchService
     {
         $url_info = parse_url($url);
         $this->preconnect($url_info['scheme'].'://'.$url_info['host'], $args);
         if ($preload) {
-            $this->preload($url, $args + ['as' => 'style']);
+            $this->preload($url, ['href' => $url, 'as' => 'style']);
         }
         $this->register($url, 'stylesheet', [
             'media' => 'print',
             'onload' => "this.onload=null;this.removeAttribute('media');"
         ]);
         if ($nojs) {
-            $this->registered[] = '<noscript>'.$this->buildHtml($url, 'stylesheet', []).'</noscript>';
+            $this->noscript([
+                'rel' => 'stylesheet',
+                'href' => $url
+            ]);
         }
         return $this;
-    }
-
-    /**
-     * Hook callback, prints out the html
-     */
-    public function onPrefetchHook()
-    {
-        foreach ($this->registered as $html) {
-            echo $html;
-        }
     }
 
     /**
@@ -140,36 +136,47 @@ class PrefetchService extends Component
      */
     public function register(string $url, string $type, array $args): PrefetchService
     {
-        $html = $this->buildHtml($url, $type, $args);
-        if (!in_array($html, $this->registered)) {
-            $this->registered[] = $html;
-        }
+        $args['href'] = $url;
+        $args['rel'] = $type;
+        \Craft::$app->view->registerLinkTag($args, $this->buildKey($args));
         return $this;
     }
 
     /**
-     * Builds a link tag html
+     * On begin body callback, prints the registered noscript tags
+     */
+    public function onBeginBody()
+    {
+        echo implode("\n", $this->noscripts);
+    }
+
+    /**
+     * Registers a noscript tag
      * 
-     * @param  string $url
-     * @param  string $type
+     * @param  array  $args
+     */
+    protected function noscript(array $args)
+    {
+        $link = BaseHtml::tag('link', '', $args);
+        $this->noscripts[$link] = BaseHtml::tag('noscript', $link);
+    }
+
+    /**
+     * Builds a unique key
+     * 
      * @param  array  $args
      * @return string
      */
-    protected function buildHtml(string $url, string $type, array $args): string
+    protected function buildKey(array $args): string
     {
-        $args['href'] = $url;
-        if (!isset($args['rel'])) {
-            $args['rel'] = $type;
-        }
-        $html = '';
+        $key = '';
         foreach ($args as $index => $arg) {
             if (is_numeric($index)) {
-                $html .= $arg;
+                $key .= $arg;
             } else {
-                $html .= $index . '="' . $arg . '"';
+                $key .= $index . $arg;
             }
-            $html .= ' ';
         }
-        return "<link $html/>\n";
+        return $key;
     }
 }

@@ -5,6 +5,7 @@ namespace Ryssbowh\CraftPrefetch;
 use Craft;
 use Ryssbowh\CraftPrefetch\variables\PrefetchVariable;
 use craft\base\Plugin;
+use craft\web\View;
 use craft\web\twig\variables\CraftVariable;
 use yii\base\Event;
 
@@ -32,8 +33,13 @@ class Prefetch extends Plugin
                     $variable->set('prefetch', PrefetchVariable::class);
                 }
             );
-
-            \Craft::$app->view->hook('prefetch', [$this::$plugin->prefetch, 'onPrefetchHook']);
+            Event::on(
+                View::class,
+                View::EVENT_BEGIN_BODY,
+                function (Event $event) {
+                    Prefetch::$plugin->prefetch->onBeginBody();
+                }
+            );
         }
     }
 }

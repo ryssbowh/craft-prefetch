@@ -24,7 +24,7 @@ All these methods can be chained, like :
 
 For very specific cases you can use the `register` method :
 
-`{% do craft.prefetch.register('https://anothersite.com/myFonts.css', 'stylesheet', ['media' => 'print', 'crossorigin']) %}`
+`{% do craft.prefetch.register('https://anothersite.com/myFonts.css', 'stylesheet', ['media' => 'print', 'crossorigin' => true]) %}`
 
 This will output :
 
@@ -41,12 +41,14 @@ Prefetch::$plugin->prefetch->dnsPrefetch('//example.com');
 All these methods (but `register`) accept a second parameter to define html arguments :
 
 ```
-{% do craft.prefetch.preload('image.png', ['crossorigin']) %}
+{% do craft.prefetch.preconnect('image.png', ['crossorigin' => true]) %}
 ```
 
 By default, the preconnect method will add the crossorigin argument if the domain called is different than the origin domain.
 
 ## Print html
+
+**deprecated in 1.1. Html is automatically printed when `head` tag ends**
 
 Call the hook where you want the html echoed out : `{% hook 'prefetch' %}`
 

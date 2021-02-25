@@ -1,6 +1,6 @@
 # ryssbowh/craft-prefetch Changelog
 
-## 1.1.0 - 2020-02-08
+## 1.1.0 - 2021-02-08
 ### Changed
 - use `View::registerLinkTag` instead of hook
 - Yii `yii\helpers\BaseHtml` to build html tags
@@ -8,15 +8,15 @@
 ### Removed
 - hook
 
-## 1.0.4 - 2020-02-05
+## 1.0.4 - 2021-02-05
 ### Fixed
 - duplicated registrations
 
-## 1.0.3 - 2020-01-31
+## 1.0.3 - 2021-01-31
 ### Changed
 - method chaining
 
-## 1.0.2 - 2020-01-31
+## 1.0.2 - 2021-01-31
 ### Changed
 - public method `register`
 - README

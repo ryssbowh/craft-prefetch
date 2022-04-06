@@ -19,7 +19,7 @@ class Prefetch extends Plugin
     /**
      * @inheritdoc
      */
-    public function init()
+    public function init(): void
     {
         parent::init();
         self::$plugin = $this;

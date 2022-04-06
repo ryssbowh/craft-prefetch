@@ -1,5 +1,9 @@
 # ryssbowh/craft-prefetch Changelog
 
+## 2.0.0 - unreleased
+### Changed
+- Craft 4 support
+
 ## 1.1.0 - 2021-02-08
 ### Changed
 - use `View::registerLinkTag` instead of hook

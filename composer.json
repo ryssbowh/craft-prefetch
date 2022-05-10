@@ -20,7 +20,7 @@
         }
     ],
     "require": {
-        "craftcms/cms": "^4.0.0-beta.1"
+        "craftcms/cms": "^4.0"
     },
     "autoload": {
         "psr-4": {
@@ -32,6 +32,7 @@
         "handle": "prefetch",
         "developer": "The Web Puzzlers",
         "developerUrl": "https://github.com/ryssbowh",
+        "documentationUrl": "https://github.com/ryssbowh/craft-prefetch",
         "components": {
             "prefetch": "Ryssbowh\\CraftPrefetch\\services\\PrefetchService"
         },

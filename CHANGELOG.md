@@ -1,5 +1,9 @@
 # ryssbowh/craft-prefetch Changelog
 
+## 1.1.1 - 2022-10-12
+### Changed
+- Changed plugin icon
+
 ## 1.1.0 - 2021-02-08
 ### Changed
 - use `View::registerLinkTag` instead of hook

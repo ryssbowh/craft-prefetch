@@ -31,7 +31,8 @@
         "name": "Prefetch",
         "handle": "prefetch",
         "developer": "The Web Puzzlers",
-        "developerUrl": "https://github.com/ryssbowh",
+        "developerUrl": "https://puzzlers.run",
+        "documentationUrl": "https://puzzlers.run/plugins/prefetch/all",
         "components": {
             "prefetch": "Ryssbowh\\CraftPrefetch\\services\\PrefetchService"
         },

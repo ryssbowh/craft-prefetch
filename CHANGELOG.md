@@ -1,5 +1,11 @@
 # ryssbowh/craft-prefetch Changelog
 
+## 2.0.3 - 2024-04-04
+
+### Changed
+
+- Updated documentation urls
+
 ## 2.0.2 - 2022-11-17
 
 ### Changed

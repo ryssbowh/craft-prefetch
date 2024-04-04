@@ -9,4 +9,4 @@ Also allows you to load an external font asynchronously.
 
 ## Documentation
 
-[Plugin documentation](https://puzzlers.run/plugins/prefetch/all)
+[Plugin documentation](https://www.webpuzzlers.co.uk/plugins/prefetch/all)
